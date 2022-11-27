@@ -5,7 +5,7 @@ This repository contains code for the paper
 by [Jongheon Jeong](https://jh-jeong.github.io), [Seojin Kim](https://seojin-kim.github.io) and [Jinwoo Shin](http://alinlab.kaist.ac.kr/shin.html). 
 
 
-## Environmental Setup
+## Environmental setup
 ```
 conda create -n catrs python=3.7
 conda activate catrs
