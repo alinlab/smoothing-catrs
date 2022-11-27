@@ -1,7 +1,7 @@
 # Confidence-aware Training of Smoothed Classifiers for Certified Robustness
 
 This repository contains code for the paper
-**"Confidence-aware Training of Smoothed Classifiers for Certified Adversarial Robustness" (AAAI 2023)** 
+**"Confidence-aware Training of Smoothed Classifiers for Certified Robustness" (AAAI 2023)** 
 by [Jongheon Jeong](https://jh-jeong.github.io), [Seojin Kim](https://seojin-kim.github.io) and [Jinwoo Shin](http://alinlab.kaist.ac.kr/shin.html). 
 
 
