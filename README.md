@@ -52,7 +52,7 @@ CUDA_VISIBLE_DEVICES=0 python code/train_catrs.py cifar10 cifar_resnet110 --lr 0
 
 Checkpoints for our experiments can be found in `data/*` of [link](https://drive.google.com/drive/folders/1TcjIkgSzWPOigD9aJk37UK6BAR0nzgKK?usp=sharing). For a more detailed instruction to run experiments, please check [`EXPERIMENTS.MD`](EXPERIMENTS.MD).
 
-## Cerifying
+## Certification
 
 All the testing scripts are originally from https://github.com/locuslab/smoothing:
 
