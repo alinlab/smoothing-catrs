@@ -1,0 +1,1 @@
+epoch	time	lr	train loss	train acc	testloss	test acc
