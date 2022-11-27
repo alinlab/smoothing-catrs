@@ -21,7 +21,9 @@ pip install setGPU tensorboardX
 
 Our method utilizes `smoothed prediction` from the model trained by `Gaussian (Cohen et al., 2019)` baseline with &sigma;=0.25. The script `code/smooth_prediction.py` loads pretrained model and smooth out its prediction. For CIFAR-10 dataset, following commands produce the smoothed predictions of Gaussian baseline. One may skip the Gaussian pre-training step by using our preprocessed results in `test/*` in [link](https://drive.google.com/drive/folders/1TcjIkgSzWPOigD9aJk37UK6BAR0nzgKK?usp=sharing). For a more detailed instruction, please check [`EXPERIMENTS.MD`](EXPERIMENTS.MD).
 ```
+# Gaussian pre-training
 CUDA_VISIBLE_DEVICES=0 python code/train_cohen.py cifar10 cifar_resnet110 --lr 0.1 --lr_step_size 50 --epochs 150 --noise 0.25 --id 0
+# Pre-processing
 CUDA_VISIBLE_DEVICES=0 python code/smooth_prediction.py cifar10 logs/cifar10/cohen/noise_0.25/cifar_resnet110/0/checkpoint.pth.tar 0.25 test/smooth_prediction/cifar10/cohen/0/noise_train_0.25.tsv --N=10000 --skip=1 --split=train
 ```
 
