@@ -19,7 +19,7 @@ pip install setGPU tensorboardX
 
 ## Preprocessing
 
-Our method utilizes `smoothed prediction` from the model trained by `Gaussian (Cohen et al., 2019)` baseline with &sigma;=0.25. The script `code/smooth_prediction.py` loads pretrained model and smooth out its prediction. For CIFAR-10 dataset, following commands produce the smoothed predictions of Gaussian baseline. One may skip the Gaussian pre-training by using our preprocessed results in `test/*` in [link](https://drive.google.com/drive/folders/1TcjIkgSzWPOigD9aJk37UK6BAR0nzgKK?usp=sharing). For a more detailed instruction, please check [`EXPERIMENTS.MD`](EXPERIMENTS.MD).
+Our method utilizes `smoothed prediction` from the model trained by `Gaussian (Cohen et al., 2019)` baseline with &sigma;=0.25. The script `code/smooth_prediction.py` loads pretrained model and smooth out its prediction. For CIFAR-10 dataset, following commands produce the smoothed predictions of Gaussian baseline. One may skip the Gaussian pre-training step by using our preprocessed results in `test/*` in [link](https://drive.google.com/drive/folders/1TcjIkgSzWPOigD9aJk37UK6BAR0nzgKK?usp=sharing). For a more detailed instruction, please check [`EXPERIMENTS.MD`](EXPERIMENTS.MD).
 ```
 CUDA_VISIBLE_DEVICES=0 python code/train_cohen.py cifar10 cifar_resnet110 --lr 0.1 --lr_step_size 50 --epochs 150 --noise 0.25 --id 0
 CUDA_VISIBLE_DEVICES=0 python code/smooth_prediction.py cifar10 logs/cifar10/cohen/noise_0.25/cifar_resnet110/0/checkpoint.pth.tar 0.25 test/smooth_prediction/cifar10/cohen/0/noise_train_0.25.tsv --N=10000 --skip=1 --split=train
@@ -33,7 +33,7 @@ to reproduce other baseline methods in `train_*.py`, as listed in what follows:
 
 | File | Description |
 | ------ | ------ |
-| [train_catrs.py](code/train_catrs.py) | The main script for CAT-RS (Confidence-Aware Training for Randomized Smoothing) |
+| [train_catrs.py](code/train_catrs.py) (ours) | The main script for CAT-RS (Confidence-Aware Training for Randomized Smoothing) |
 | [train_cohen.py](code/train_cohen.py) | Gaussian augmentation (Cohen et al., 2019) |
 | [train_stab.py](code/train_stab.py) | Stability training (Li et al., 2019) |
 | [train_salman.py](code/train_salman.py) | SmoothAdv (Salman et al., 2019) |
