@@ -1,4 +1,4 @@
-# Confidence-aware Training of Smoothed Classifiers for Certified Adversarial Robustness
+# Confidence-aware Training of Smoothed Classifiers for Certified Robustness
 
 This repository contains code for the paper
 **"Confidence-aware Training of Smoothed Classifiers for Certified Adversarial Robustness" (AAAI 2023)** 
