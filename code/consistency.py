@@ -50,23 +50,6 @@ def consistency_loss(logits, lbd, eta=0.5, loss='default'):
         sm1, sm2 = softmax[0], softmax[1]
         loss_mse = ((sm2 - sm1) ** 2).sum(1)
         consistency = lbd * loss_mse
-    elif loss == 'jsd':
-        log_avg_sm = torch.log(avg_softmax.clamp(min=1e-20))
-        loss_ikl = [kl_div(log_avg_sm, F.softmax(logit, dim=1)) for logit in logits]
-        loss_ikl = sum(loss_ikl) / m
-
-        loss_jsd = 0.5 * (loss_kl + loss_ikl)
-        consistency = lbd * loss_jsd
-    elif loss == 'jsd2':
-        def _jsd(p, q):
-            r = (p + q) / 2.
-            log_r = torch.log(r.clamp(min=1e-20))
-            kl_p = F.kl_div(log_r, p, reduction='none').sum(1)
-            kl_q = F.kl_div(log_r, q, reduction='none').sum(1)
-            return (kl_p + kl_q) / 2.
-        loss_jsd = [_jsd(avg_softmax, F.softmax(logit, dim=1)) for logit in logits]
-        loss_jsd = sum(loss_jsd) / m
-        consistency = lbd * loss_jsd
     else:
         raise NotImplementedError()
 
