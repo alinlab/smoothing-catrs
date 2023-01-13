@@ -60,7 +60,8 @@ All the testing scripts are originally from https://github.com/locuslab/smoothin
 
 ```
 # CAT-RS certification for CIFAR-10 dataset with noise level sigma=0.25
-python code/certify.py cifar10 model_output_dir/checkpoint.pth.tar 0.25 certification_output --alpha 0.001 --N0 100 --N 100000
+python code/certify.py cifar10 logs/cifar10/catrs/adv_256.0_4/lbd_0.5/num_4/noise_0.25/cifar_resnet110/0/checkpoint.pth.tar 0.25 \
+test/certify/cifar10/catrs/adv_256.0_4/lbd_0.5/num_4/0/noise_0.25.tsv --N=100000 --skip=1
 ```
 
 will load the base classifier saved at `model_output_dir/checkpoint.pth.tar`, smooth it using noise level &sigma;=0.25,
