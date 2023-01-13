@@ -12,8 +12,7 @@ import torch
 
 from third_party.core import Smooth
 from architectures import get_architecture
-#from datasets import get_dataset, DATASETS, get_num_classes
-from torchvision import datasets, transforms
+
 import numpy as np
 
 parser = argparse.ArgumentParser(description='Certify many examples')
@@ -27,6 +26,7 @@ parser.add_argument("--N0", type=int, default=100)
 parser.add_argument("--N", type=int, default=100000, help="number of samples to use")
 parser.add_argument("--alpha", type=float, default=0.001, help="failure probability")
 parser.add_argument("--base_c_path", type=str, help="path of corrupted dataset")
+
 
 args = parser.parse_args()
 

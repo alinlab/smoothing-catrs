@@ -233,7 +233,7 @@ def train(loader: DataLoader, model: torch.nn.Module, criterion, optimizer: Opti
 
 class KL_PGD(object):
     """
-    SmoothAdv PGD L2 attack
+    CAT-RS PGD attack based on KL-divergence against smoothed prediction
 
     Parameters
     ----------
@@ -259,7 +259,7 @@ class KL_PGD(object):
 
     def attack(self, model, inputs, labels, noises=None):
         """
-        Performs SmoothAdv PGD L2 attack of the model for the inputs and labels.
+        Performs CAT-RS PGD attack of the model for the inputs and labels.
 
         Parameters
         ----------
@@ -268,7 +268,7 @@ class KL_PGD(object):
         inputs : torch.Tensor
             Batch of samples to attack. Values should be in the [0, 1] range.
         labels : torch.Tensor
-            Labels of the samples to attack.
+            Smoothed predictions of the samples to attack.
         noises : List[torch.Tensor]
             Lists of noise samples to attack.
 

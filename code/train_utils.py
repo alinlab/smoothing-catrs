@@ -117,22 +117,12 @@ def prologue(args, use_arch2=False, use_arch3=False):
         print("Number of parameters: ", sum(p.numel() for p in model.parameters() if p.requires_grad))
 
 
-    if use_arch2:
-        model2 = get_architecture(args.arch2, args.dataset)
-    if use_arch3:
-        model2 = get_architecture(args.arch2, args.dataset)
-        model3 = get_architecture(args.arch3, args.dataset)
-
     logfilename = os.path.join(args.outdir, 'log.txt')
     init_logfile(logfilename, "epoch\ttime\tlr\ttrain loss\ttrain acc\ttestloss\ttest acc")
     writer = SummaryWriter(args.outdir)
 
     criterion = CrossEntropyLoss().to(device)
     params = model.parameters()
-    if use_arch2:
-        params = list(params) + list(model2.parameters())
-    if use_arch3:
-        params = list(params) + list(model2.parameters()) + list(model3.parameters())
 
     optimizer = SGD(params, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     scheduler = StepLR(optimizer, step_size=args.lr_step_size, gamma=args.gamma)
@@ -147,21 +137,12 @@ def prologue(args, use_arch2=False, use_arch3=False):
                                     map_location=lambda storage, loc: storage)
             starting_epoch = checkpoint['epoch']
             model.load_state_dict(checkpoint['state_dict'])
-            if use_arch2:
-                model2.load_state_dict(checkpoint['state_dict2'])
-            if use_arch3:
-                model2.load_state_dict(checkpoint['state_dict2'])
-                model3.load_state_dict(checkpoint['state_dict3'])
             optimizer.load_state_dict(checkpoint['optimizer'])
             print("=> loaded checkpoint '{}' (epoch {})"
                   .format(model_path, checkpoint['epoch']))
         else:
             print("=> no checkpoint found at '{}'".format(model_path))
 
-    if use_arch2:
-        model = (model, model2)
-    if use_arch3:
-        model = (model, model2, model3)
 
     return train_loader, test_loader, criterion, model, optimizer, scheduler, \
            starting_epoch, logfilename, model_path, device, writer
