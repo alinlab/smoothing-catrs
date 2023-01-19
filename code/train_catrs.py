@@ -92,7 +92,7 @@ def main():
             attacker = KL_PGD(steps=args.num_steps, device=device, max_norm=args.epsilon*2.0)
         
         if epoch == args.lr_drop:
-            for g in optim.param_groups:
+            for g in optimizer.param_groups:
                 g['lr'] = g['lr'] * args.gamma
 
         train_loss, train_acc = train(train_loader, model, criterion, optimizer, epoch,
